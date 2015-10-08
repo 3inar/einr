@@ -2,21 +2,29 @@
 % Please edit documentation in R/leekasso.R
 \name{leekasso}
 \alias{leekasso}
-\title{Leekasso feature selection}
+\title{Leekasso regression}
 \usage{
-leekasso(x, y)
+leekasso(x, y, family = gaussian)
 }
 \arguments{
-\item{x}{A predictor matrix.}
+\item{x}{A predictor matrix with samples in the rows.}
 
 \item{y}{A response vector.}
+
+\item{family}{A description of the error distribution/link function for the
+glm. For more info see the documentation for \code{glm}.}
 }
 \value{
-Vector containing the indexes of the top ten predictors.
+\code{leekasso} reurns an object of class "leekasso" with the
+following components:
+\item{glm}{a glm object fit with the best ten predictors.}
+\item{pvalues}{the p-values from the univariate regressions.}
+\item{top_p}{the indexes of the best predictors.}
 }
 \description{
 Jeff Leek's leekasso for p-value-based feature selection. Performs univariate
 regressions of the response on each of the predictors and selects the ten
-predictors with the lowest p-values.
+predictors with the lowest p-values. Then regressses the response on these
+ten predictors.
 }
 
