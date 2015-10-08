@@ -1,0 +1,11 @@
+Package: einr
+Type: Package
+Title: Different Functions That I Keep Needing
+Version: 0.1.0
+Date: 2015-10-08
+Authors: person("Holsbø", "Einar", email = "einar@cs.uit.no",
+    role = c("aut", "cre"))
+Description: This is (or will turn into) a package that collects some of the
+    functions and methods that I use a lot in my day-to-day life.
+License: MIT + file LICENSE
+LazyData: TRUE
