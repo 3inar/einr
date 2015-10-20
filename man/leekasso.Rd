@@ -17,14 +17,19 @@ glm. For more info see the documentation for \code{glm}.}
 \value{
 \code{leekasso} reurns an object of class "leekasso" with the
 following components:
-\item{glm}{a glm object fit with the best ten predictors.}
-\item{pvalues}{the p-values from the univariate regressions.}
-\item{top_p}{the indexes of the best predictors.}
+\item{model}{a glm object fit with the best ten predictors.}
+\item{pvals}{the p-values from the univariate regressions.}
+\item{predictors}{the indexes of the best predictors.}
+\item{x}{the data frame used to fit the model.}
+\item{y}{the responses used to fit the model.}
 }
 \description{
 Jeff Leek's leekasso for p-value-based feature selection. Performs univariate
 regressions of the response on each of the predictors and selects the ten
 predictors with the lowest p-values. Then regressses the response on these
 ten predictors.
+}
+\seealso{
+\code{\link{glm}}
 }
 

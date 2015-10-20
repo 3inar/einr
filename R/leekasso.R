@@ -12,9 +12,13 @@
 #'
 #' @return \code{leekasso} reurns an object of class "leekasso" with the
 #' following components:
-#' \item{glm}{a glm object fit with the best ten predictors.}
-#' \item{pvalues}{the p-values from the univariate regressions.}
-#' \item{top_p}{the indexes of the best predictors.}
+#' \item{model}{a glm object fit with the best ten predictors.}
+#' \item{pvals}{the p-values from the univariate regressions.}
+#' \item{predictors}{the indexes of the best predictors.}
+#' \item{x}{the data frame used to fit the model.}
+#' \item{y}{the responses used to fit the model.}
+#'
+#' @seealso \code{\link{glm}}
 #' @export
 # TODO: add @example
 leekasso <- function(x, y, family=gaussian) {
@@ -22,12 +26,39 @@ leekasso <- function(x, y, family=gaussian) {
   top <- order(pvals)[1:10]
 
   lglm <- list()
-  lglm$top_p <- glm(y~x[, top], family=family)
-  lglm$pvalues <- pvals
-  class(lglm) <- "leekasso"
+  lglm$model <- glm(y~x[, top], family=family)
+  lglm$predictors <- top
+  lglm$pvals <- pvals
 
+  # not 100% sure about keeping the data, let's do for now...
+  lglm$x <- x
+  lglm$y <- y
+
+  class(lglm) <- "leekasso"
   return(lglm)
 }
 
-# @describeIn leekasso
-#testman <-function(x) { 5 }
+#' Preddict Method for Leekasso Fits
+#'
+#' Obtains predictions from the leekasso-fit glm in a leekasso object.
+#'
+#' @param object A gitted object of "leekasso" class
+#' @param newdata An optional data frame of new data to predict the response of.
+#'    If omitted, the data used to fit the model is used.
+#' @param ... Arguments passed on to \code{predict.glm}
+#'
+#' @return In general a vector or matrix of predictions, but see also the
+#' documentation for \code{predict.glm}.
+#'
+#' @seealso \code{\link{predict.glm}}
+#' @export
+# TODO: add @example
+predict.leekasso <- function(object, newdata=NULL, ...) {
+  if (is.null(newdata)) {
+    prediction <- predict(object$model, ...)
+  } else {
+    prediction <- predict(object$model, newdata[, object$predictors], ...)
+  }
+
+  return(prediction)
+}
