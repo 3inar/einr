@@ -2,4 +2,5 @@
 
 S3method(predict,leekasso)
 export(glm_rank)
+export(hyperboxplot)
 export(leekasso)
