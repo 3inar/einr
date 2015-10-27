@@ -9,3 +9,4 @@ Description: This is (or will turn into) a package that collects some of the
     functions and methods that I use a lot in my day-to-day life.
 License: MIT + file LICENSE
 LazyData: TRUE
+Encoding: UTF-8
