@@ -15,7 +15,7 @@ leekasso(x, y, family = gaussian)
 glm. For more info see the documentation for \code{glm}.}
 }
 \value{
-\code{leekasso} reurns an object of class "leekasso" with the
+\code{leekasso} returns an object of class "leekasso" with the
 following components:
 \item{model}{a glm object fit with the best ten predictors.}
 \item{pvals}{the p-values from the univariate regressions.}

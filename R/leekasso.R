@@ -10,7 +10,7 @@
 #' @param family A description of the error distribution/link function for the
 #' glm. For more info see the documentation for \code{glm}.
 #'
-#' @return \code{leekasso} reurns an object of class "leekasso" with the
+#' @return \code{leekasso} returns an object of class "leekasso" with the
 #' following components:
 #' \item{model}{a glm object fit with the best ten predictors.}
 #' \item{pvals}{the p-values from the univariate regressions.}
