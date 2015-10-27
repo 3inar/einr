@@ -7,6 +7,9 @@
 #' @param y A response vector.
 #' @param family A description of the error distribution/link function for the
 #' glm. For more info see the documentation for \code{glm}.
+#' @param swapxy A logical value indicating that instead of regressing \code{y}
+#'  on each column in \code{x}, you would like to regress the columns in \code{x}
+#'  on \code{y}.
 #'
 #' @return an object of class "glmvector" with the following components:
 #' \item{glms}{a list of univariate glms corresponding to the predictors in
@@ -18,8 +21,12 @@
 #' @seealso \code{\link{glm}}
 #' @export
 # TODO: add @example
-glmvector <- function(x, y, family=gaussian) {
-  glms <- apply(x, 2, function(x) { glm(y~x, family=family) } )
+glmvector <- function(x, y, family=gaussian, swapxy=F) {
+  if (swapxy) {
+    glms <- apply(x, 2, function(x) { glm(x~y, family=family) } )
+  } else {
+    glms <- apply(x, 2, function(x) { glm(y~x, family=family) } )
+  }
 
   pvalues <- sapply(glms, function(x) { coef(summary(x))[2, 4] } )
   slopes <- sapply(glms, function(x) { coef(summary(x))[2, "Estimate"] } )

@@ -4,7 +4,7 @@
 \alias{glmvector}
 \title{GLM vector}
 \usage{
-glmvector(x, y, family = gaussian)
+glmvector(x, y, family = gaussian, swapxy = F)
 }
 \arguments{
 \item{x}{A predictor matrix with samples in the rows.}
@@ -13,6 +13,10 @@ glmvector(x, y, family = gaussian)
 
 \item{family}{A description of the error distribution/link function for the
 glm. For more info see the documentation for \code{glm}.}
+
+\item{swapxy}{A logical value indicating that instead of regressing \code{y}
+ on each column in \code{x}, you would like to regress the columns in \code{x}
+ on \code{y}.}
 }
 \value{
 an object of class "glmvector" with the following components:
