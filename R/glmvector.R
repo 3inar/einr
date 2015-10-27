@@ -39,7 +39,7 @@ glmvector <- function(x, y, family=gaussian, swapxy=F) {
 }
 
 #' @export
-coef.glmvector <- function(object) {
+coef.glmvector <- function(object, ...) {
   c <- cbind(object$slopes, object$pvalues)
   colnames(c) <- c("Slope", "p-value")
   rownames(c) <- object$names
