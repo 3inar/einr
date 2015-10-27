@@ -12,8 +12,8 @@
 #' @return Vector of p-values from the glms.
 #' @export
 glm_rank <- function(x, y, family=gaussian) {
-  lms <- apply(x, 2, function(x) { glm(y~x, family=family) } )
-  pvals <- sapply(lms, function(x) { summary(x)$coefficients[2, 4] } )
+  lms <- glmvector(x, y, family)
+  pvals <- coef(lms)[, "p-value"]
 
   return(pvals)
 }
