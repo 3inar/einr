@@ -40,7 +40,7 @@ glm_rank <- function(x, y, family=gaussian) {
 #' test <- iris[bs$oob[[1]], ]
 bootsample <- function(n, b=1000) {
   samples <- t(replicate(b, sample(1:n, n, replace=TRUE)))
-  oob <- alply(samples, 1, function(x) { which(!(1:n %in% x)) })
+  oob <- plyr::alply(samples, 1, function(x) { which(!(1:n %in% x)) })
 
   bs <- list(samples=samples, oob=oob)
   class(bs) <- "bootsample"
