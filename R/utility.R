@@ -18,6 +18,16 @@ glm_rank <- function(x, y, family=gaussian) {
   return(pvals)
 }
 
+#' Standard colors for two-class plots
+#'
+#' Returns two colors to use in plotting.
+#'
+#' @return Vector of two colors
+#' @export
+twocolors <- function() {
+  c("deepskyblue", "goldenrod")
+}
+
 #' Draw bootstrap samples
 #'
 #' Draws n samples in the range \code{1:n} with replacement. Provides the
