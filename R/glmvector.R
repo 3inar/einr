@@ -45,3 +45,18 @@ coef.glmvector <- function(object, ...) {
   rownames(c) <- object$names
   c
 }
+
+#' Plot for glmvector objects
+#'
+#' Creates a "volcano plot" for the glm vector: plots slope as a function of
+#' negative log p-value for each \code{glm} in the vector
+#'
+#' @param x a \code{glmvector} object.
+#' @param ... other parameters passed on to \code{plot()}
+#' @export
+plot.glmvector <- function(x, ...) {
+  coefs <- coef(x)
+  coefs[,2] <- -log(coefs[,2])
+  colnames(coefs)[2] <- "-log p-value"
+  plot(coefs, ...)
+}
