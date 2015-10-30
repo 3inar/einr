@@ -25,10 +25,11 @@ glm_rank <- function(x, y, family=gaussian) {
 #'
 #' @param n The size of the data set to draw samples from
 #' @param b Number of bootstrap resamples to draw
-#' @return Returns an object of class "bootsample" with the following components
-#' \item{samples}{a \code{b} by \code{n} matrix containing bootstrap samples}
-#' \item{oob}{a list of b vectors that provide the samples that arent in the
-#'  respective bootstrap samples}
+#' @return Returns an object of class "bootsample" which is a list of \code{b} lists
+#' with the following two attributes:
+#' \item{sample}{a \code{n}-vector containting a bootstrap sample.}
+#' \item{oob}{a vector that contains the data points not in \code{sample}. Can
+#' for eg be used as test set.}
 #' @export
 #' @examples
 #' data("iris")
@@ -36,14 +37,15 @@ glm_rank <- function(x, y, family=gaussian) {
 #' bs <- bootsample(nsamples, 1)  # draw a single bootstrap sample
 #'
 #' ## split into training and test sets based on the bootstrap resampling
-#' train <- iris[bs$sample[1, ], ]
-#' test <- iris[bs$oob[[1]], ]
+#' train_idx <- bs[[1]]$sample
+#' test_idx <- bs[[1]]$oob
+#' train <- iris[train_idx, ]
+#' test <- iris[test_idx, ]
 bootsample <- function(n, b=1000) {
-  samples <- t(replicate(b, sample(1:n, n, replace=TRUE)))
-  oob <- plyr::alply(samples, 1, function(x) { which(!(1:n %in% x)) })
+  samples <- plyr::rlply(b, sample(1:n, n, replace=TRUE))
+  oobs <- plyr::llply(samples, function(x) { which(!(1:n %in% x)) })
 
-  bs <- list(samples=samples, oob=oob)
+  bs <- plyr::alply(1:b, 1, function(x) { list(sample=samples[[x]], oob=oobs[[x]]) })
   class(bs) <- "bootsample"
-
   bs
 }
