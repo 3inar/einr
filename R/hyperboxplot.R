@@ -5,9 +5,12 @@
 #'
 #' @param x  A matrix from which the plot is produced. Each column is a separate
 #'    group or dimension.
+#' @param medianorder Logical argument indicating whether the box plots should be
+#'    ordered by median, which usually gives you a cleaner plot. Defaults to \code{F}.
+#' @param ... Addidional arguments passed to \code{plot()}
 #' @return None.
 #' @export
-hyperboxplot <- function(x) {
+hyperboxplot <- function(x, medianorder=F, ...) {
   p <- c(2.5, 5, 25, 50, 75, 95, 97.5)/100
   quant <- apply(x, 2, quantile, probs=p)
 
@@ -18,9 +21,17 @@ hyperboxplot <- function(x) {
     "#dd1c77"   # deeper red
   )
 
+  if (medianorder) {
+    quant <- quant[, order(quant["50%", ])]
+  }
+
   ymax <- max(quant)
   ymin <- min(quant)
-  plot(quant["50%", ], type="n", ylim=c(ymin, ymax))
+  if (!"ylim" %in% names(list(...))) {
+    plot(quant["50%", ], type="n", ylim=c(ymin, ymax), ...)
+  } else {
+    plot(quant["50%", ], type="n", ...)
+  }
 
   lines(quant["2.5%", ], col=color_palette[1])
   lines(quant["97.5%", ], col=color_palette[1])

@@ -4,11 +4,16 @@
 \alias{hyperboxplot}
 \title{Hyperboxplot: for when you have too many dimensions for regular boxplots}
 \usage{
-hyperboxplot(x)
+hyperboxplot(x, medianorder = F, ...)
 }
 \arguments{
 \item{x}{A matrix from which the plot is produced. Each column is a separate
 group or dimension.}
+
+\item{medianorder}{Logical argument indicating whether the box plots should be
+ordered by median, which usually gives you a cleaner plot. Defaults to \code{F}.}
+
+\item{...}{Addidional arguments passed to \code{plot()}}
 }
 \value{
 None.
