@@ -3,7 +3,8 @@
 #' Runs \code{t.test} for each column in the two input sets
 #'
 #' @param x First group. Samples in rows
-#' @param y Second group. Samples in rows
+#' @param y Second group. Samples in rows. If \code{y=NULL} (default), a
+#'  one-sample test is performed exactly as in \code{t.test}
 #' @param adjust Adjust for multiple testing? Boolean indicating whether the
 #'  FDR should be controlled by Benjamini-Hochberg correction using \code{p.adjust}.
 #' @param ... Additional arguments passed to \code{t.test}
@@ -18,14 +19,18 @@
 #' @seealso \code{\link{t.test}}, \code{\link{p.adjust}}
 #' @export
 # TODO: add @example
-ttestvector <- function(x, y, adjust=TRUE, ...) {
-  if (ncol(x) != ncol(y)) {
+ttestvector <- function(x, y=NULL, adjust=TRUE, ...) {
+  if (!is.null(y) && ncol(x) != ncol(y)) {
     stop("Number of columns must match for the two groups")
   }
   ntests <- ncol(x)
-  tests <- plyr::alply(1:ntests, 1, function(i) { t.test(x[, i], y[, i], ...) })
-  pvals <- plyr::laply(tests, function(x) { x$p.value })
+  if(is.null(y)) {
+    tests <- plyr::alply(1:ntests, 1, function(i) { t.test(x[, i], y, ...) })
+  } else {
+    tests <- plyr::alply(1:ntests, 1, function(i) { t.test(x[, i], y[, i], ...) })
+  }
 
+  pvals <- plyr::laply(tests, function(x) { x$p.value })
   if (adjust) {
     pvals <- p.adjust(pvals, method="BH")
   }

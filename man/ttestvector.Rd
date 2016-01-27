@@ -4,12 +4,13 @@
 \alias{ttestvector}
 \title{T-test vector}
 \usage{
-ttestvector(x, y, adjust = TRUE, ...)
+ttestvector(x, y = NULL, adjust = TRUE, ...)
 }
 \arguments{
 \item{x}{First group. Samples in rows}
 
-\item{y}{Second group. Samples in rows}
+\item{y}{Second group. Samples in rows. If \code{y=NULL} (default), a
+one-sample test is performed exactly as in \code{t.test}}
 
 \item{adjust}{Adjust for multiple testing? Boolean indicating whether the
 FDR should be controlled by Benjamini-Hochberg correction using \code{p.adjust}.}
