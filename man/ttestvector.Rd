@@ -21,8 +21,9 @@ FDR should be controlled by Benjamini-Hochberg correction using \code{p.adjust}.
 an object of class "ttestvector" that contains the following elements:
 \item{tests}{a list that contains the \code{htest} objects corresponding to
  each call to \code{t.test}}
-\item{pvalues}{an array of the p-values corresponding to each test. If
- \code{adjust} was \code{TRUE}, these will be adjusted to control FDR}
+\item{pvalues}{an array of the adjusted p-values corresponding to each test. If
+ \code{adjust} was \code{FALSE}, these will be the same as \code{rawpvalues}}
+\item{rawpvalues}{an array of the unadjusted p-values corresponding to each test.}
 \item{adjusted}{logical indicating whether p-values were adjusted}
 }
 \description{

@@ -30,12 +30,14 @@ ttestvector <- function(x, y=NULL, adjust=TRUE, ...) {
     tests <- plyr::alply(1:ntests, 1, function(i) { t.test(x[, i], y[, i], ...) })
   }
 
-  pvals <- plyr::laply(tests, function(x) { x$p.value })
+  rawpvals <- plyr::laply(tests, function(x) { x$p.value })
   if (adjust) {
-    pvals <- p.adjust(pvals, method="BH")
+    pvals <- p.adjust(rawpvals, method="BH")
+  } else {
+    pvals <- rawpvals
   }
 
-  ttv <- list(tests=tests, pvalues=pvals, adjusted=adjust)
+  ttv <- list(tests=tests, pvalues=pvals, rawpvalues=rawpvals, adjusted=adjust)
   class(ttv) <- "ttestvector"
 
   return(ttv)
