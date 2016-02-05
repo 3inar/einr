@@ -48,7 +48,6 @@ summary.ttestvector <- function(object) {
   pvalues <- object$pvalues
   intervals_lower <- plyr::laply(object$tests, function(x) { x$conf.int[1] })
   intervals_upper <- plyr::laply(object$tests, function(x) { x$conf.int[2] })
-  print(head(cbind(intervals_lower, intervals_upper)))
 
   first_test <- object$tests[[1]]
   if (length(first_test$estimate) > 1) {
