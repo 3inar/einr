@@ -44,6 +44,7 @@ ttestvector <- function(x, y=NULL, adjust=TRUE, ...) {
   return(ttv)
 }
 
+#' @export
 summary.ttestvector <- function(object) {
   pvalues <- object$pvalues
   intervals_lower <- plyr::laply(object$tests, function(x) { x$conf.int[1] })
@@ -64,6 +65,7 @@ summary.ttestvector <- function(object) {
   sm
 }
 
+#' @export
 as.data.frame.summary.ttestvector <- function(x) {
   x$test <- NULL
   class(x) <- "list"
