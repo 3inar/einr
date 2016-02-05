@@ -12,8 +12,9 @@
 #' @return an object of class "ttestvector" that contains the following elements:
 #' \item{tests}{a list that contains the \code{htest} objects corresponding to
 #'  each call to \code{t.test}}
-#' \item{pvalues}{an array of the p-values corresponding to each test. If
-#'  \code{adjust} was \code{TRUE}, these will be adjusted to control FDR}
+#' \item{pvalues}{an array of the adjusted p-values corresponding to each test. If
+#'  \code{adjust} was \code{FALSE}, these will be the same as \code{rawpvalues}}
+#' \item{rawpvalues}{an array of the unadjusted p-values corresponding to each test.}
 #' \item{adjusted}{logical indicating whether p-values were adjusted}
 #'
 #' @seealso \code{\link{t.test}}, \code{\link{p.adjust}}
@@ -41,4 +42,31 @@ ttestvector <- function(x, y=NULL, adjust=TRUE, ...) {
   class(ttv) <- "ttestvector"
 
   return(ttv)
+}
+
+summary.ttestvector <- function(object) {
+  pvalues <- object$pvalues
+  intervals_lower <- plyr::laply(object$tests, function(x) { x$conf.int[1] })
+  intervals_upper <- plyr::laply(object$tests, function(x) { x$conf.int[2] })
+  print(head(cbind(intervals_lower, intervals_upper)))
+
+  first_test <- object$tests[[1]]
+  if (length(first_test$estimate) > 1) {
+    # 2-sample
+    estimates <- plyr::laply(object$tests, function(x) { x$estimate[1] - x$estimate[2] })
+  } else {
+    # 1-sample
+    estimates <- plyr::laply(object$tests, function(x) { x$estimate })
+  }
+
+  sm <- list(pvalue=pvalues, ci_lower=intervals_lower, ci_upper=intervals_upper,
+             estimate=estimates, test=first_test)
+  class(sm) <- "summary.ttestvector"
+  sm
+}
+
+as.data.frame.summary.ttestvector <- function(x) {
+  x$test <- NULL
+  class(x) <- "list"
+  data.frame(x, stringsAsFactors=F)
 }
