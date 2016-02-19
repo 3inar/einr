@@ -2,6 +2,7 @@
 
 S3method(as.data.frame,summary.ttestvector)
 S3method(coef,glmvector)
+S3method(hist,ttestvector)
 S3method(plot,glmvector)
 S3method(predict,leekasso)
 S3method(summary,ttestvector)

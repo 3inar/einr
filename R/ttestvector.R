@@ -71,3 +71,14 @@ as.data.frame.summary.ttestvector <- function(x) {
   class(x) <- "list"
   data.frame(x, stringsAsFactors=F)
 }
+
+#' Historgram of unadjusted p-values for \code{ttestvector}
+#'
+#' @param x n object of class \code{ttestvector}
+#' @param ... extra arguments passed on to \code{hist}
+#'
+#' @seealso \code{\link{ttestvector}}, \code{\link{hist}}
+#' @export
+hist.ttestvector <- function(x, ...) {
+  hist(x$rawpvalues, ...)
+}
