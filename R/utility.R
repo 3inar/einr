@@ -40,7 +40,6 @@ twocolors <- function() {
 #' \item{sample}{a \code{n}-vector containting a bootstrap sample.}
 #' \item{oob}{a vector that contains the data points not in \code{sample}. Can
 #' for eg be used as test set.}
-#' @export
 #' @examples
 #' data("iris")
 #' nsamples <- nrow(iris)
@@ -51,6 +50,7 @@ twocolors <- function() {
 #' test_idx <- bs[[1]]$oob
 #' train <- iris[train_idx, ]
 #' test <- iris[test_idx, ]
+#' @export
 bootsample <- function(n, b=1000) {
   samples <- plyr::rlply(b, sample(1:n, n, replace=TRUE))
   oobs <- plyr::llply(samples, function(x) { which(!(1:n %in% x)) })
