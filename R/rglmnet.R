@@ -1,5 +1,5 @@
 #' @export
-rglmnet <- function(x, y) {
+rglmnet <- function(x, y, nfolds=5) {
   # TODO hardcoded B
   bsamples <- bootsample(nrow(x), b=100)
 
@@ -7,11 +7,11 @@ rglmnet <- function(x, y) {
     xb <- x[bs$sample, ]
     yb <- y[bs$sample]
     # TODO hardcoded lasso, binomial
-    glmnetfit <- glmnet::cv.glmnet(xb, yb, alpha=1, family="binomial")
+    glmnetfit <- glmnet::cv.glmnet(xb, yb, alpha=1, family="binomial", nfolds=nfolds)
 
     # TODO hardcoded lambda
     as.numeric(coef(glmnetfit, s="lambda.1se"))
-  }, .progress="text")
+  })
 
   class(betas) <- "rglmnet"
   betas
