@@ -1,11 +1,13 @@
 Package: einr
 Type: Package
 Title: Different Functions That I Keep Needing
-Version: 0.1.15
+Version: 0.1.16
 Date: 2015-10-08
 Imports:
     plyr,
-    glmnet
+    glmnet,
+Suggests:
+    glmnetUtils
 Authors@R: person("Holsbø", "Einar", email = "einar@cs.uit.no",
     role = c("aut", "cre"))
 Description: This is (or will turn into) a package that collects some of the
