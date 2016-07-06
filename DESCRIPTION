@@ -1,7 +1,7 @@
 Package: einr
 Type: Package
 Title: Different Functions That I Keep Needing
-Version: 0.1.16
+Version: 0.1.17
 Date: 2015-10-08
 Imports:
     plyr,
