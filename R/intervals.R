@@ -6,9 +6,11 @@
 #' @param .outer width of the outer quantile interval. Defaults to 0.95
 #' @param .main main title of the plot. Passed directly to \code{plot(main=.main)}
 #' @param .width width of the interval strips
+#' @param .col_i color of inner interval
+#' @param .col_o color of outer interval
 #' @export
 intervals <- function(x, .names=NULL, .inner=0.75, .outer=0.95, .main="",
-                      .width=0.5) {
+                      .width=0.5, .col_i="gray25", .col_o="gray87") {
   .inner <- 1 - .inner
   .outer <- 1 - .outer
   .probs <- c(.outer/2, .inner/2, 0.5, 1-.inner/2, 1-.outer/2)
@@ -34,8 +36,8 @@ intervals <- function(x, .names=NULL, .inner=0.75, .outer=0.95, .main="",
   }
 
   plyr::a_ply(1:n_c, 1, function(i) {
-    rect(.quantiles[i,1], i-.width/2, .quantiles[i,5], i+.width/2, border=NA, col="gray87")
-    rect(.quantiles[i,2], i-.width/2, .quantiles[i,4], i+.width/2, border=NA, col="gray25")
-    lines(x=rep(.quantiles[i,3], 2), y=c(i-.width/2, i+.width/2), col=par("bg"))
+    rect(.quantiles[i,1], i-.width/2, .quantiles[i,5], i+.width/2, border=NA, col=.col_o)
+    rect(.quantiles[i,2], i-.width/2, .quantiles[i,4], i+.width/2, border=NA, col=.col_i)
+    lines(x=rep(.quantiles[i,3], 2), y=c(i-.width/2, i+.width/2), col=.col_o)
   })
 }

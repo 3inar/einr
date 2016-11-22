@@ -5,7 +5,7 @@
 \title{Plots an inner and outer quantile interval for a list or matrix of measurements.}
 \usage{
 intervals(x, .names = NULL, .inner = 0.75, .outer = 0.95, .main = "",
-  .width = 0.5)
+  .width = 0.5, .col_i = "gray25", .col_o = "gray87")
 }
 \arguments{
 \item{x}{list of vectors or matrix to plot}
@@ -19,6 +19,10 @@ intervals(x, .names = NULL, .inner = 0.75, .outer = 0.95, .main = "",
 \item{.main}{main title of the plot. Passed directly to \code{plot(main=.main)}}
 
 \item{.width}{width of the interval strips}
+
+\item{.col_i}{color of inner interval}
+
+\item{.col_o}{color of outer interval}
 }
 \description{
 Plots an inner and outer quantile interval for a list or matrix of measurements.
