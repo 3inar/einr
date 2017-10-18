@@ -6,6 +6,8 @@ Date: 2015-10-08
 Imports:
     plyr,
     glmnet,
+    gistr,
+    rstudioapi
 Suggests:
     glmnetUtils,
     testthat

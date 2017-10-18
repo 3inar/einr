@@ -1,0 +1,4 @@
+Name: Dump to gist
+Description: Dumps the current document to gists.github.com
+Binding: gistdump
+Interactive: false
