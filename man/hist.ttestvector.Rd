@@ -17,4 +17,3 @@ Historgram of unadjusted p-values for \code{ttestvector}
 \seealso{
 \code{\link{ttestvector}}, \code{\link{hist}}
 }
-

@@ -12,4 +12,3 @@ Vector of two colors
 \description{
 Returns two colors to use in plotting.
 }
-

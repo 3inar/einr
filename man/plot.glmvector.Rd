@@ -15,4 +15,3 @@
 Creates a "volcano plot" for the glm vector: plots slope as a function of
 negative log p-value for each \code{glm} in the vector
 }
-

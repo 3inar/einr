@@ -32,4 +32,3 @@ ten predictors.
 \seealso{
 \code{\link{glm}}
 }
-

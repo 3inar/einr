@@ -32,4 +32,3 @@ Runs \code{t.test} for each column in the two input sets
 \seealso{
 \code{\link{t.test}}, \code{\link{p.adjust}}
 }
-

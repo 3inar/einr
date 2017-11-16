@@ -31,4 +31,3 @@ Weston, J., Leslie, C., Ie, E., Zhou, D., Elisseeff, A., & Noble, W. S. (2005).
  Semi-supervised protein classification using cluster kernels.
  Bioinformatics, 21(15), 3241-3247.
 }
-

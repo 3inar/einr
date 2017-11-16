@@ -33,4 +33,3 @@ that each column is a predictor.
 \seealso{
 \code{\link{glm}}
 }
-

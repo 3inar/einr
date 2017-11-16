@@ -33,4 +33,3 @@ test_idx <- bs[[1]]$oob
 train <- iris[train_idx, ]
 test <- iris[test_idx, ]
 }
-

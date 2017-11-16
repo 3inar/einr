@@ -27,4 +27,3 @@ intervals(x, .names = NULL, .inner = 0.75, .outer = 0.95, .main = "",
 \description{
 Plots an inner and outer quantile interval for a list or matrix of measurements.
 }
-

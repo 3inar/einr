@@ -18,4 +18,3 @@ Read all the files in a directory ending in ".rda" and combine their contents
 by either \code{cbind} or \code{rbind}. Assumes each \code{.rda} file contains
 a single object. Assumes list inputs, produces list outputs. Combines by row.
 }
-

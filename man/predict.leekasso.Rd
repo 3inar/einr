@@ -24,4 +24,3 @@ Obtains predictions from the leekasso-fit glm in a leekasso object.
 \seealso{
 \code{\link{predict.glm}}
 }
-

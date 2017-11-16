@@ -21,4 +21,3 @@ Vector of p-values from the glms.
 Fits a glm in each predictor and returns the p-value for \eqn{\beta_1} in
 each glm.
 }
-

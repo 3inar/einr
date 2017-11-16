@@ -22,4 +22,3 @@ None.
 This is a very naive reimplementation of Karl Broman's \code{manyboxplot},
 which see \url{https://kbroman.wordpress.com/2012/04/25/microarrays-suck/}.
 }
-
