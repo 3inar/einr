@@ -15,10 +15,9 @@ calibration_curve <- function(predictions, responses) {
     stop("responses must be a zero-one vector")
   }
   d_a <- density(predictions)
-  d_t <- density(predictions[responses==1], bw=d_a$bw)
 
   xgrid <- seq(0,1, 0.01)
-  prd <- predict(d_t, oldx=predictions[responses==1], newx=xgrid)/predict(d_a, oldx=predictions, newx=xgrid)
+  prd <- predict(d_a, oldx=predictions[responses==1], newx=xgrid)/predict(d_a, oldx=predictions, newx=xgrid)
 
   n_true <- sum(responses)
   n_tot <- length(responses)
@@ -27,5 +26,5 @@ calibration_curve <- function(predictions, responses) {
   plot(xgrid, prd, main="Calibration curve", xlab="Predicted probability", ylab="True proportion", type = "l")
   abline(0,1, col="grey")
 
-  invisible(list(x=xgrid, y=prd))
+  invisible(list(x=xgrid, y=prd bw=d_a$bw))
 }
