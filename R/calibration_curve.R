@@ -26,5 +26,5 @@ calibration_curve <- function(predictions, responses) {
   plot(xgrid, prd, main="Calibration curve", xlab="Predicted probability", ylab="True proportion", type = "l")
   abline(0,1, col="grey")
 
-  invisible(list(x=xgrid, y=prd bw=d_a$bw))
+  invisible(list(x=xgrid, y=prd, bw=d_a$bw))
 }
